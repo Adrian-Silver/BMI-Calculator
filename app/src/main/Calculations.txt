@@ -1,0 +1,23 @@
+How to Calculate BMI
+
+Measurement Units
+
+a.) Metric System (Kgs and M)
+
+Formula:  weight(kg) / ((height * height)(m))
+
+b.) Other System (Lbs and In)
+
+Formula: weight(lb) / ((height * height)(In)) * 703
+
+
+BMI Categories
+
+<18.5  -> Underweight
+18.5 - 24.9  -> Healthy Weight
+25.0 - 29.9  -> Overweight
+30.0>  -> Obesity
+
+
+Note:
+These calculations are meant for adults
