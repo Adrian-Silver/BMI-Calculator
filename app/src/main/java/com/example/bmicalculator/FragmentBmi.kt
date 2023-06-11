@@ -39,22 +39,37 @@ class FragmentBmi : Fragment() {
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         binding.metricSpinner.adapter = spinnerAdapter
-
-//        binding.metricSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-//            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-//                val selectedItem = parent.getItemAtPosition(position).toString()
 //
-//                val meszSystem = when (selectedItem) {
-//                    "Metric System" ->
-//                }
+//        val measurementSystem = binding.metricSpinner.selectedItem.toString()
 //
-//            }
-//
-//            override fun onNothingSelected(parent: AdapterView<*>?) {
-//                TODO("Not yet implemented")
-//            }
-//
+//        if (measurementSystem == "US Customary System") {
+//            binding.heightEtL.hint = getString(R.string.hint_us_customary)
+//            binding.heightCmEtL.hint = getString(R.string.hint_us_customary_inches)
+//        } else {
+//            binding.heightEtL.hint = getString(R.string.hint_metric)
+//            binding.heightCmEtL.hint = getString(R.string.hint_metric_cm)
 //        }
+
+        binding.metricSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                val measurementSystem = parent.getItemAtPosition(position).toString()
+
+                if (measurementSystem == "US Customary System") {
+                    binding.heightEtL.hint = getString(R.string.hint_us_customary)
+                    binding.heightCmEtL.hint = getString(R.string.hint_us_customary_inches)
+                    binding.weightEtL.hint = getString(R.string.hint_us_customary_pounds)
+                } else {
+                    binding.heightEtL.hint = getString(R.string.hint_metric)
+                    binding.heightCmEtL.hint = getString(R.string.hint_metric_cm)
+                    binding.weightEtL.hint = getString(R.string.hint_metric_weight)
+                }
+
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // Handle the case where no item is selected
+            }
+        }
 
         binding.calculateBtn.setOnClickListener {
             calculateBmi()
@@ -65,7 +80,6 @@ class FragmentBmi : Fragment() {
     private fun bmi(height: Double, weight: Double): Double {
 
         return (weight / (height * height))
-
     }
 
     private fun calculateBmi() {
@@ -75,8 +89,11 @@ class FragmentBmi : Fragment() {
         val measurementSystem = binding.metricSpinner.selectedItem.toString()
 
         val result = if (measurementSystem == "US Customary System") {
+
+            // assumes height is in inches
             bmi(height, weight) * 703
         } else {
+            // height is in metres
             bmi(height, weight)
         }
 
@@ -88,11 +105,9 @@ class FragmentBmi : Fragment() {
 
 //        binding.outputTv.text = "Your BMI is: $roundedResult"
         binding.numResultTv.text = "$roundedResult"
+
     }
 
-//    private fun metricSystem() {
-//
-//    }
 
     // TODO
     // Have height options for metres and cm and Inches and Feet
@@ -104,7 +119,7 @@ class FragmentBmi : Fragment() {
     * Height is converted to inches - what if I want in feet and inches?
     * Need to change height to match conversion
     * use sharedPreferences to retain conversion system
-    * Based on conversion system, let it reflect on hint
+    * Based on conversion system, let it reflect on hint - status: Success
     */
 
 

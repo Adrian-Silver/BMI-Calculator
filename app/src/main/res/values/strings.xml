@@ -2,4 +2,11 @@
     <string name="app_name">BMI Calculator</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="hint_metric">Metres</string>
+    <string name="hint_metric_cm">Centimetres</string>
+    <string name="hint_metric_weight">Kilograms</string>
+    <string name="hint_us_customary">Feet</string>
+    <string name="hint_us_customary_inches">Inches</string>
+    <string name="hint_us_customary_pounds">Pounds</string>
 </resources>
