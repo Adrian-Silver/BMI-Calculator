@@ -7,9 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Spinner
 import com.example.bmicalculator.databinding.FragmentBmiBinding
-import kotlinx.coroutines.NonDisposableHandle.parent
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
@@ -83,16 +81,24 @@ class FragmentBmi : Fragment() {
     }
 
     private fun calculateBmi() {
-        val height = binding.heightEt.text.toString().toDouble()
+        val height1 = binding.heightEt.text.toString().toDouble()
+        val height2 = binding.heightCmEt.text.toString().toDouble()
+
+
+
         val weight = binding.weightEt.text.toString().toDouble()
 
         val measurementSystem = binding.metricSpinner.selectedItem.toString()
 
         val result = if (measurementSystem == "US Customary System") {
 
+            val height = (height1 * 12) + height2
+
             // assumes height is in inches
             bmi(height, weight) * 703
         } else {
+
+            val height = height1 + (height2 / 100)
             // height is in metres
             bmi(height, weight)
         }
@@ -116,7 +122,8 @@ class FragmentBmi : Fragment() {
 
 
     /* Conversions half-done - Issue:
-    * Height is converted to inches - what if I want in feet and inches?
+    * Height is converted to inches - what if I want in feet and inches? - status: Partial Success
+    * Set constraints to inches editText (from 0 - 11)
     * Need to change height to match conversion
     * use sharedPreferences to retain conversion system
     * Based on conversion system, let it reflect on hint - status: Success
