@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.example.bmicalculator.databinding.FragmentBmiBinding
 import com.google.android.material.textview.MaterialTextView
+import java.lang.Double.NaN
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
@@ -105,7 +106,7 @@ class FragmentBmi : Fragment() {
 
         val measurementSystem = binding.metricSpinner.selectedItem.toString()
 
-        val result = if (measurementSystem == "US Customary System") {
+        var result = if (measurementSystem == "US Customary System") {
 
             // set Toast showing that if inches value is set to greater than 11.0,
             // it will be set by default to 11.0, also update value on editText to show max value
@@ -141,8 +142,13 @@ class FragmentBmi : Fragment() {
 
         val comment = binding.resultCommentTv.text.toString()
 
+        if (result.isNaN()) {
+            Toast.makeText(requireContext(), "Calculation is invalid (NaN). Check your inputs", Toast.LENGTH_SHORT).show()
+//            result = 0.0
+            binding.numResultTv.text = "0.0"
+            binding.commentTv.visibility = View.GONE
 
-        if (result <= 18.50) {
+        } else if (result <= 18.50) {
 //            val status: String = getString(R.string.underweight)
             binding.resultCommentTv.setTextColor(Color.BLUE)
 //            binding.resultCommentTv.text = "$comment " + getString(R.string.healthy)
