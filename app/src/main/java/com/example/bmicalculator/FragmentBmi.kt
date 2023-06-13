@@ -101,7 +101,7 @@ class FragmentBmi : Fragment() {
         val height2 = binding.heightCmEt.text.toString().toDoubleOrNull() ?: 0.0
 
 
-        val weight = binding.weightEt.text.toString().toDouble()
+        val weight = binding.weightEt.text.toString().toDoubleOrNull() ?: 0.0
 
         val measurementSystem = binding.metricSpinner.selectedItem.toString()
 
@@ -191,6 +191,7 @@ class FragmentBmi : Fragment() {
 
     // TODO
     /*
+    handle case for null values
      use sharedPreferences to retain conversion system
      Describe BMI result with different colours(blue, green, yellow, red)
      Create a status bar showing the result and color - color;Success || status; Buggy
