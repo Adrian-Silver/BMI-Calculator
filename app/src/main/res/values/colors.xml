@@ -2,4 +2,13 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    <!-- Status Colors - Blue, Green, Yellow, Red -->
+
+    <color name="blue">#0000ff</color>
+    <color name="green">#00ff00</color>
+    <color name="yellow">#ffff00</color>
+    <color name="red">#ff0000</color>
+
 </resources>

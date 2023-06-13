@@ -9,4 +9,14 @@
     <string name="hint_us_customary">Feet</string>
     <string name="hint_us_customary_inches">Inches</string>
     <string name="hint_us_customary_pounds">Pounds</string>
+
+<!--    <string name="result_comment">This comment describes your BMI result</string>-->
+    <string name="result_comment">You are : </string>
+<!--    <string name="result_comment">You are: \u0020</string>-->
+
+
+    <string name="underweight">Underweight</string>
+    <string name="healthy">Healthy</string>
+    <string name="overweight">Overweight</string>
+    <string name="obese">Obese</string>
 </resources>
